@@ -22,7 +22,7 @@ recipeRouter
   } )
 
   .post( jsonParser, ( req, res, next ) => {
-      console.log(JSON.stringify(req.body, null, 2))
+    console.log("Received post recipe request");
     const { id, title, servings, readyInMinutes, image } = req.body
     if ( !( title && id ) ) {
       return res.status( 400 ).json( {
@@ -43,6 +43,7 @@ recipeRouter
       newRecipe
     )
       .then( ( recipe ) => {
+        console.log("Recipe inserted, returning success");
         res
           .status( 201 )
           .location( path.posix.join( req.originalUrl, `/${recipe.id}` ) )
