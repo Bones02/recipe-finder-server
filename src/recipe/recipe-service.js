@@ -13,7 +13,7 @@ const RecipeService = {
           return rows[0]
         } )
     },
-    getRecipeById( knex, id ) {
+    getRecipesById( knex, id ) {
       return knex
         .select( '*' )
         .from( 'recipes' )

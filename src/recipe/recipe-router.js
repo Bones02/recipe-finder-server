@@ -22,6 +22,7 @@ recipeRouter
   } )
 
   .post( jsonParser, ( req, res, next ) => {
+      console.log(JSON.stringify(req.body, null, 2))
     const { id, title, servings, readyInMinutes, image } = req.body
     if ( !( title && id ) ) {
       return res.status( 400 ).json( {
@@ -33,7 +34,7 @@ recipeRouter
         id, 
         title, 
         servings, 
-        readyInMinutes, 
+        readyinminutes: readyInMinutes, 
         image
     }
     
@@ -41,7 +42,7 @@ recipeRouter
       req.app.get( 'db' ),
       newRecipe
     )
-      .then( ( recipe) => {
+      .then( ( recipe ) => {
         res
           .status( 201 )
           .location( path.posix.join( req.originalUrl, `/${recipe.id}` ) )
@@ -55,7 +56,7 @@ recipeRouter
 
   .route( '/:recipeId' )
   .all( ( req, res, next ) => {
-    RecipeService.getRecipeById(
+    RecipeService.getRecipesById(
       req.app.get( 'db' ),
       req.params.recipeId
     )
@@ -102,6 +103,7 @@ recipeRouter
       .catch( next )
   } )
   .delete( ( req, res, next ) => {
+    console.log(JSON.stringify(req.body, null, 2))
     RecipeService.deleteRecipe(
       req.app.get( 'db' ),
       req.params.recipeId
