@@ -1,26 +1,16 @@
-# Express Boilerplate!
+Name of App: Recipe Finder App
 
-This is a boilerplate project used for starting new projects!
+Live Link: https://recipe-finder-sigma.now.sh 
 
-## Set up
+Client Repo - https://github.com/Bones02/Recipe-Finder
 
-Complete the following steps to start a new project (NEW-PROJECT-NAME):
+Documentation of API: 
+    Repository: https://github.com/Bones02/recipe-finder-server
+    Summary: Database stores users saved recipes. Routes available for GET, POST, PATCH, and DELETE. No authenitcation required.
+    Endpoint: GET /recipe Action: Get all recipes
+    Endoint: GET /recipeId Action: provides get recipe by Id
 
-1. Clone this repository to your local machine `git clone BOILERPLATE-URL NEW-PROJECTS-NAME`
-2. `cd` into the cloned repository
-3. Make a fresh start of the git history for this project with `rm -rf .git && git init`
-4. Install the node dependencies `npm install`
-5. Move the example Environment file to `.env` that will be ignored by git and read by the express server `mv example.env .env`
-6. Edit the contents of the `package.json` to use NEW-PROJECT-NAME instead of `"name": "express-boilerplate",`
 
-## Scripts
-
-Start the application `npm start`
-
-Start nodemon for the application `npm run dev`
-
-Run the tests `npm test`
-
-## Deploying
-
-When your new project is ready for deployment, add a new Heroku application with `heroku create`. This will make a new git remote called "heroku" and you can then `npm run deploy` which will push to this remote's master branch.
+Summary: The Recipe Search App will allow users to search for recipes and save their favorites for later. This prevents users from having to search for the same recipe mulitple times. They will be able to scroll through their saved recipes at ease. To search users will enter a term such as chicken or chocolate into the search box. Using the Edamam API recipe results will be display for users to look through. Under each recipe will be a star button allowing users to save said recipe to their list.
+ 
+Technologies Used: React, Node, Express, Javascript, Html, Spoonacular API and CSS
