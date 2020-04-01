@@ -5,11 +5,9 @@ const RecipeService = require( './recipe-service' )
 const recipeRouter = express.Router()
 const jsonParser = express.json()
 
-// pull each piece of logic out of each route, all after .get, and put that all into a route file with a function for each route.
 recipeRouter
 
   .route( '/' )
-
   .get( ( req, res, next ) => {
     const knexInstance = req.app.get( 'db' )
     RecipeService.getAllRecipes( knexInstance )
@@ -20,7 +18,6 @@ recipeRouter
       } )
       .catch( next )
   } )
-
   .post( jsonParser, ( req, res, next ) => {
     console.log("Received post recipe request");
     const { id, title, servings, readyInMinutes, image } = req.body
@@ -29,7 +26,6 @@ recipeRouter
         error : { message : `${title}, ${id}` }
       } )
     }
-
     const newRecipe = {
         id, 
         title, 
@@ -37,7 +33,6 @@ recipeRouter
         readyinminutes: readyInMinutes, 
         image
     }
-    
     RecipeService.insertRecipe(
       req.app.get( 'db' ),
       newRecipe
@@ -52,9 +47,7 @@ recipeRouter
       .catch( next )
   } )
 
-
 recipeRouter
-
   .route( '/:recipeId' )
   .all( ( req, res, next ) => {
     RecipeService.getRecipesById(
@@ -67,7 +60,7 @@ recipeRouter
             error : { message : 'Recipe not found.' }
           } )
         }
-        res.recipe = recipe // save recipe for next middlewear, and pass on to next
+        res.recipe = recipe
         next()
       } )
       .catch( next )
@@ -90,7 +83,6 @@ recipeRouter
       ...recipeToUpdate, 
       modified
     }
-    // ISSUE: You can't reassociate a note to a new folder, probably because of the constraints of the field.
     RecipeService.updateRecipe(
       req.app.get( 'db' ),
       res.recipe.id,
@@ -104,7 +96,6 @@ recipeRouter
       .catch( next )
   } )
   .delete( ( req, res, next ) => {
-    console.log(JSON.stringify(req.body, null, 2))
     RecipeService.deleteRecipe(
       req.app.get( 'db' ),
       req.params.recipeId
