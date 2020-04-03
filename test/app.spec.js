@@ -8,7 +8,7 @@ describe('App', () => {
       .get('/recipe')
       .expect(200)
   })
-  it('GET / responds with 200', () => {
+  it('GET /:recipeId responds with 200', () => {
     return supertest(app)
       .get('/:recipeId')
       .expect(200)
